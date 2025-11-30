@@ -260,10 +260,13 @@ if ! $PATCHED; then
 fi
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 if [ -d "$TMP_DIR" ]; then
     EVAL "rm -rf \"$TMP_DIR\""
 fi
 
+=======
+>>>>>>> parent of 213434a5 (unica: patches: legacy: add support for recent devices (#551))
 =======
 >>>>>>> parent of 213434a5 (unica: patches: legacy: add support for recent devices (#551))
 unset PATCHED TARGET_FIRMWARE_PATH

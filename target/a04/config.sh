@@ -1,0 +1,68 @@
+#
+# Copyright (C) 2025 Salvo Giangreco
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+# Device configuration file for Galaxy A04 (a04)
+TARGET_NAME="Galaxy A04"
+TARGET_CODENAME="a04"
+TARGET_PLATFORM="mt6765"
+TARGET_FIRMWARE="SM-A045F/INS/356303840747594"
+TARGET_EXTRA_FIRMWARES=()
+TARGET_PLATFORM_SDK_VERSION=34
+TARGET_PRODUCT_SHIPPING_API_LEVEL=31
+
+# Dynamic partitions
+TARGET_SUPER_PARTITION_SIZE=7029653504
+TARGET_QTI_DYNAMIC_PARTITIONS_SIZE=7029653504
+
+# OS
+TARGET_OS_SINGLE_SYSTEM_IMAGE="mssi"
+TARGET_OS_BUILD_SYSTEM_EXT_PARTITION=true
+
+# SEC Product Feature
+TARGET_AUDIO_CONFIG_RECORDALIVE_LIB_VERSION="07010"
+TARGET_AUDIO_SUPPORT_ACH_RINGTONE=false
+TARGET_AUDIO_SUPPORT_DUAL_SPEAKER=false
+TARGET_AUDIO_SUPPORT_VIRTUAL_VIBRATION=false
+TARGET_CAMERA_SUPPORT_CAMERAX_EXTENSION=true
+TARGET_CAMERA_SUPPORT_CUTOUT_PROTECTION=false
+TARGET_CAMERA_SUPPORT_MASS_APP_FLAVOR=true
+TARGET_CAMERA_SUPPORT_SDK_SERVICE=false
+TARGET_COMMON_CONFIG_MDNIE_MODE="55829"
+TARGET_COMMON_SUPPORT_DYN_RESOLUTION_CONTROL=false
+TARGET_COMMON_SUPPORT_EMBEDDED_SIM=false
+TARGET_DVFSAPP_CONFIG_DVFS_POLICY_FILENAME="dvfs_policy_mt6765_xx"
+TARGET_DVFSAPP_CONFIG_SSRM_POLICY_FILENAME="siop_a73xq_mt6765"
+TARGET_FINGERPRINT_CONFIG_SENSOR="google_touch_display_optical,settings=3,no_delay_in_screen_off,transition_effect_on"
+TARGET_LCD_CONFIG_COLOR_WEAKNESS_SOLUTION="3"
+TARGET_LCD_CONFIG_CONTROL_AUTO_BRIGHTNESS="3"
+TARGET_LCD_CONFIG_HFR_DEFAULT_REFRESH_RATE="60"
+# [
+# Enable seamless refresh rate feature
+# Check target/a04/patches/hfr/customize.sh for more info
+TARGET_LCD_CONFIG_HFR_MODE="2"
+TARGET_LCD_CONFIG_HFR_SUPPORTED_REFRESH_RATE="60"
+TARGET_LCD_CONFIG_SEAMLESS_BRT="149,84"
+TARGET_LCD_CONFIG_SEAMLESS_LUX="300,3500"
+# ]
+TARGET_LCD_SUPPORT_MDNIE_HW=false
+TARGET_RIL_FEATURES="onebinary satellite_carrier"
+TARGET_RIL_SIM_CONFIG_MULTISIM_TRAYCOUNT="1"
+TARGET_RIL_SUPPORT_WATERPROOF_SIM_TRAY_MSG=false
+# [
+# Use custom booster value to improve Wi-Fi performance
+TARGET_WLAN_CONFIG_DATA_ACTIVITY_AFFINITY_BOOSTER_THRESHOLD="9999"
+# ]

@@ -23,6 +23,7 @@ prebuilts/*/*/*/** binary
 unica/mods/prophide/system/bin/rezetprop binary
 
 # Device-specific prebuilt blobs
+target/a04/patches/*/vendor/*/** binary
 target/a52sxq/patches/wpss/vendor/firmware/** binary
 target/a73xq/patches/wpss/vendor/firmware/** binary
 target/m52xq/patches/wpss/vendor/firmware/** binary

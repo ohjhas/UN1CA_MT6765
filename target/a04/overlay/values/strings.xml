@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="config_defaultAugmentedAutofillService" />
+    <string name="config_defaultContentCaptureService" />
+    <string name="config_defaultTextClassifierPackage" />
+    <string name="config_mainBuiltInDisplayCutout">M 0,0 H -46.93333333333333 V 24 H 46.93333333333333 V 0 H 0 Z @dp</string>
+    <string name="config_mms_user_agent">Android-Mms/0.1</string>
+    <string name="config_mms_user_agent_profile_url">http://www.google.com/oha/rdf/ua-profile-kila.xml</string>
+    <string name="config_wallpaperCropperPackage">com.android.wallpaperpicker</string>
+    <string name="config_wifi_tcp_buffers">1730560,3461120,6922240,524288,1048576,4525824</string>
+</resources>

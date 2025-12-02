@@ -2,9 +2,7 @@
 BACKPORT_SF_PROPS()
 {
     local FILE="$WORK_DIR/vendor/build.prop"
-    if [ -f "$WORK_DIR/vendor/default.prop" ]; then
-        FILE="$WORK_DIR/vendor/default.prop"
-    fi
+    [ -f "$WORK_DIR/vendor/default.prop" ] && local FILE="$WORK_DIR/vendor/default.prop"
 
     if [ ! -f "$FILE" ]; then
         ABORT "File not found: ${FILE//$SRC_DIR\//}"
@@ -35,13 +33,11 @@ BACKPORT_SF_PROPS()
         fi
 
         PROP="ro.surface_flinger.enable_frame_rate_override"
-        if [ "$(GET_PROP "vendor" "ro.surface_flinger.set_idle_timer_ms")" ]; then
+        [ "$(GET_PROP "vendor" "ro.surface_flinger.set_idle_timer_ms")" ] && \
             PROP="ro.surface_flinger.set_idle_timer_ms"
-        fi
         VALUE="$(GET_PROP "vendor" "ro.surface_flinger.use_content_detection_for_refresh_rate")"
-        if [ ! "$VALUE" ]; then
+        [ ! "$VALUE" ] && \
             VALUE="$(test "$TARGET_LCD_CONFIG_HFR_MODE" -gt "1" && echo "true" || echo "false")"
-        fi
 
         if [[ "$(sed -n "/$PROP/{x;p;d;}; x" "$FILE")" != *"use_content_detection_for_refresh_rate"* ]]; then
             if [ ! "$(GET_PROP "vendor" "ro.surface_flinger.use_content_detection_for_refresh_rate")" ]; then
@@ -211,63 +207,9 @@ if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "35" ]; then
     fi
 fi
 
-# Support legacy usb_notify kernel drivers (pre-API 36)
-# https://github.com/salvogiangri/UN1CA/discussions/519
-# - Check for 'SKY_DEFAULT' to determine if newer usb_notify drivers are in place
-if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "36" ]; then
-    if ! grep -q "SKY_DEFAULT" "$WORK_DIR/kernel/boot.img"; then
-        PATCHED=true
-        SMALI_PATCH "system" "system/framework/services.jar" \
-            "smali_classes2/com/android/server/usb/UsbHostRestrictor.smali" "replace" \
-            "isFinishLockTimer()Z" \
-            "RAINY_RESTRICT_MODE" \
-            "2"
-        SMALI_PATCH "system" "system/framework/services.jar" \
-            "smali_classes2/com/android/server/usb/UsbHostRestrictor.smali" "replace" \
-            "onKeyguardStateChanged(Z)V" \
-            "CLOUDY_WORK_MODE" \
-            "1"
-        SMALI_PATCH "system" "system/framework/services.jar" \
-            "smali_classes2/com/android/server/usb/UsbHostRestrictor\$1.smali" "replace" \
-            "onChange(Z)V" \
-            "CLOUDY_WORK_MODE" \
-            "1"
-        SMALI_PATCH "system" "system/framework/services.jar" \
-            "smali_classes2/com/android/server/usb/UsbHostRestrictor\$8.smali" "replace" \
-            "handleMessage(Landroid/os/Message;)V" \
-            "SUNNY_WORK_MODE" \
-            "0"
-        SMALI_PATCH "system" "system/framework/services.jar" \
-            "smali_classes2/com/android/server/usb/UsbHostRestrictor\$8.smali" "replace" \
-            "handleMessage(Landroid/os/Message;)V" \
-            "RAINY_RESTRICT_MODE" \
-            "2"
-        SMALI_PATCH "system" "system/framework/services.jar" \
-            "smali_classes2/com/android/server/usb/UsbService\$Lifecycle.smali" "replace" \
-            "onBootPhase(I)V" \
-            "RAINY_RESTRICT_MODE" \
-            "2"
-        SMALI_PATCH "system" "system/framework/services.jar" \
-            "smali_classes2/com/android/server/usb/UsbService\$Lifecycle.smali" "replace" \
-            "onBootPhase(I)V" \
-            "CLOUDY_WORK_MODE" \
-            "1"
-    fi
-fi
-
 if ! $PATCHED; then
     LOG "\033[0;33m! Nothing to do\033[0m"
 fi
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-if [ -d "$TMP_DIR" ]; then
-    EVAL "rm -rf \"$TMP_DIR\""
-fi
-
-=======
->>>>>>> parent of 213434a5 (unica: patches: legacy: add support for recent devices (#551))
-=======
->>>>>>> parent of 213434a5 (unica: patches: legacy: add support for recent devices (#551))
 unset PATCHED TARGET_FIRMWARE_PATH
 unset -f BACKPORT_SF_PROPS

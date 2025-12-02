@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="physical_power_button_center_screen_location_y">900.0px</dimen>
     <dimen name="status_bar_camera_cutout_crop_size">84.0px</dimen>
     <dimen name="status_bar_camera_top_margin">4.0px</dimen>
     <dimen name="status_bar_height_portrait">4.529999mm</dimen>
